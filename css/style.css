@@ -162,31 +162,64 @@ h1 span { color: var(--g-blue); }
 .about-text p{font-size:16px;line-height:1.7;color:var(--text-muted);margin-bottom:16px;}
 .about-text strong{color:var(--text-main);font-weight:500;}
 
-/* INI KODE BARU UNTUK STYLING FOTO ABOUT BIAR BULAT DAN RAPI */
-/* Styling Foto About */
+/* Styling Grup Profile (Foto + Tombol) */
+/* Bawaan untuk Tampilan HP / Portrait */
+.about-profile-group {
+  display: flex;
+  flex-direction: column; /* Numpuk vertikal ke bawah di HP */
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
 .about-img {
   width: 140px;
   height: 140px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 50% !important; /* Wajib bulat penuh di setiap kondisi */
   border: 3px solid var(--g-blue);
-  display: block;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
-  
-  /* Bawaan untuk HP: Posisi di Tengah */
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* Aturan Khusus Layar Laptop/PC (Lebar di atas 768px) */
+.about-cv-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* Aturan Khusus Layar Laptop / Desktop / Landscape (Lebar di atas 768px) */
 @media(min-width: 768px) {
+  .about-profile-group {
+    flex-direction: row; /* Berubah jadi horizontal berjejer */
+    align-items: center; /* Tombol otomatis presisi di tengah-tengah tinggi foto */
+    gap: 24px;
+  }
+  
   .about-img {
-    /* Posisi geser ke kiri */
-    margin-left: 0;
-    margin-right: auto;
+    margin: 0; /* Reset margin bawaan HP */
+    border-radius: 50% !important; /* Tetap mempertahankan bentuk bulat murni */
+  }
+  
+  .about-cv-btn {
+    margin-left: auto;
+    margin-right: auto; /* Sihir utama: Membuat tombol otomatis mengambil posisi center sempurna di sisa ruang kosong sebelum skill cards */
   }
 }
+
+/* Aturan Khusus Layar Laptop/PC (Landscape) */
+@media(min-width: 768px) {
+  .about-profile-group {
+    flex-direction: row;      /* Bikin elemen jadi berjajar dari kiri ke kanan */
+    justify-content: flex-start; /* Posisinya geser jadi rata kiri */
+    align-items: center;      /* Posisinya sejajar lurus secara vertikal */
+    gap: 24px;
+  }
+  
+  .about-img {
+    border-radius: 16px; /* Di laptop fotonya berubah jadi agak persegi dengan sudut bulat */
+  }
+}
+
+
 
 .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .acard-ico{font-size:28px;margin-bottom:12px;color:var(--g-blue);display:block; transition: transform 0.3s ease;}
