@@ -113,7 +113,7 @@ nav.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
 h1 { font-family: var(--font-disp); font-size: clamp(42px, 8vw, 72px); font-weight: 700; line-height: 1.1; color: var(--text-main); margin-bottom: 16px; letter-spacing: -1px; }
 h1 span { color: var(--g-blue); }
-.hero-desc { font-size: 18px; line-height: 1.6; color: var(--text-muted); font-weight: 300; margin-bottom: 40px; }
+.hero-desc { font-size: 18px; line-height: 1.6; color: var(--text-main); font-weight: 400; margin-bottom: 40px; }
 
 .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .btn {
@@ -130,9 +130,10 @@ h1 span { color: var(--g-blue); }
 /* Animasi background blurnya biar gerak-gerak halus */
 @keyframes floatBg {
   0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.05) translate(2%, -2%); }
+  70% { transform: scale(1.05) translate(2%, -2%); }
   100% { transform: scale(1) translate(-2%, 2%); }
 }
+
 /* ── SECTION ── */
 .section{padding:80px 0;}
 .section:nth-child(odd){background:var(--bg-alt);}
@@ -160,6 +161,32 @@ h1 span { color: var(--g-blue); }
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
 .about-text p{font-size:16px;line-height:1.7;color:var(--text-muted);margin-bottom:16px;}
 .about-text strong{color:var(--text-main);font-weight:500;}
+
+/* INI KODE BARU UNTUK STYLING FOTO ABOUT BIAR BULAT DAN RAPI */
+/* Styling Foto About */
+.about-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--g-blue);
+  display: block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  
+  /* Bawaan untuk HP: Posisi di Tengah */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Aturan Khusus Layar Laptop/PC (Lebar di atas 768px) */
+@media(min-width: 768px) {
+  .about-img {
+    /* Posisi geser ke kiri */
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
 
 .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .acard-ico{font-size:28px;margin-bottom:12px;color:var(--g-blue);display:block; transition: transform 0.3s ease;}
@@ -222,9 +249,21 @@ h1 span { color: var(--g-blue); }
 .tl-item:nth-child(3):hover .tl-title { color: var(--g-yellow); }
 
 /* ── PROJECTS ── */
-.proj-grid{display:grid;grid-template-columns:1fr;gap:24px;}
-@media(min-width:768px){ .proj-grid{grid-template-columns:1fr 1fr;} }
 
+.proj-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Ini kunci rahasia biar card ke-3 otomatis nengah */
+  gap: 24px;
+}
+.proj-grid > .g-card {
+  width: 100%; /* Buat tampilan layar HP biar tetep full dari kiri ke kanan */
+}
+@media(min-width: 768px) { 
+  .proj-grid > .g-card {
+    width: calc(50% - 12px); /* Tampilan Laptop: 2 card sejajar. Kalau ada card sisa, bakal ditengahin! */
+  } 
+}
 .pcard-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
 .pcard-ico{font-size:24px;color:var(--text-muted); transition: color 0.3s ease;}
 .g-card:hover .pcard-ico { color: var(--g-blue); }
