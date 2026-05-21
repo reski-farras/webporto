@@ -1,509 +1,450 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reski Farras Adiefa | Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>Reski Farras Adiefa - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <style>
-  :root {
-    --green: #00ff88;
-    --green-dim: rgba(0,255,136,0.1);
-    --green-border: rgba(0,255,136,0.18);
-    --dark: #09090b;
-    --surface: rgba(255,255,255,0.03);
-    --text: #c8d6e5;
-    --text-muted: rgba(200,214,229,0.45);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { background: var(--dark); scroll-behavior: smooth; }
-  body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-main: #ffffff;
+  --bg-alt: #f8f9fa;
+  --text-main: #202124;
+  --text-muted: #5f6368;
+  --border: #dadce0;
+  
+  --g-blue: #1a73e8;
+  --g-red: #ea4335;
+  --g-yellow: #fbbc04;
+  --g-green: #34a853;
+  --g-blue-light: #e8f0fe;
 
-  /* subtle orb, only one */
-  .orb {
-    position: fixed; top: -160px; left: -160px;
-    width: 480px; height: 480px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,136,0.07) 0%, transparent 70%);
-    pointer-events: none; z-index: 0;
-  }
+  --font-disp: 'Outfit', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-main);color:var(--text-main);font-family:var(--font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
-    z-index: 100;
-    display: flex; align-items: center; gap: 32px;
-    background: rgba(9,9,11,0.75);
-    backdrop-filter: blur(18px);
-    border: 1px solid var(--green-border);
-    border-radius: 9999px;
-    padding: 10px 26px;
-  }
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem; font-weight: 700;
-    color: var(--green); letter-spacing: 0.04em;
-  }
-  .nav-links { display: flex; gap: 24px; }
-  .nav-links a {
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.09em;
-    text-transform: uppercase; color: var(--text-muted);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--green); }
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;height:64px;padding:0 24px;gap:24px;
+  transition: box-shadow 0.3s ease;
+}
+nav.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 5%; }
+.nav-logo{font-family:var(--font-disp);font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-right:auto;text-decoration:none;transition: transform 0.3s ease;}
+.nav-logo:hover{transform: scale(1.05);}
+.nav-logo .r1{color:var(--g-blue);}
+.nav-logo .e{color:var(--g-red);}
+.nav-logo .s{color:var(--g-yellow);}
+.nav-logo .k{color:var(--g-blue);}
+.nav-logo .i{color:var(--g-green);}
 
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh; display: flex; align-items: center;
-    padding: 130px 5% 80px;
-    max-width: 960px; margin: 0 auto;
-  }
-  .hero-inner { width: 100%; }
+.nav-links{display:flex;gap:24px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
 
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Space Mono', monospace; font-size: 0.72rem;
-    color: var(--green); border: 1px solid var(--green-border);
-    border-radius: 9999px; padding: 5px 14px; margin-bottom: 30px;
-    background: var(--green-dim);
-  }
-  .hero-tag::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green); flex-shrink: 0;
-    animation: blink 1.4s ease-in-out infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+/* Nav Link Hover & Active State */
+.nav-link{
+  font-family:var(--font-disp);font-size:15px;font-weight:500;
+  color:var(--text-muted);text-decoration:none;white-space:nowrap;
+  position: relative;
+  padding: 8px 0;
+  transition:color .3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--g-blue);
+  border-radius: 2px 2px 0 0;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.nav-link:hover, .nav-link.active { color: var(--g-blue); font-weight: 700; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-  h1.name {
-    font-size: clamp(3rem, 7vw, 5.8rem); font-weight: 800;
-    line-height: 1.04; letter-spacing: -0.025em;
-    color: #fff; margin-bottom: 22px;
-  }
-  h1.name .accent { color: var(--green); }
+/* ── HERO ── */
+#hero{
+  min-height:85vh;display:flex;align-items:center;justify-content:center;
+  padding:80px 24px;text-align:center;
+  background:var(--bg-main);
+}
+.hero-inner{max-width:700px;}
+.hero-tag{
+  font-family:var(--font-body);font-size:13px;font-weight:500;
+  color:var(--text-muted);
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--bg-alt);border:1px solid var(--border);border-radius:16px;
+  padding:6px 16px;margin-bottom:24px;
+  transition: all 0.3s ease;
+}
+.hero-tag:hover { background: var(--g-blue-light); border-color: var(--g-blue); color: var(--g-blue); }
+.hero-tag .material-symbols-outlined {font-size: 16px; color: var(--g-blue);}
 
-  .typing-wrap {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem; color: var(--text-muted); margin-bottom: 28px;
-    min-height: 24px; display: flex; align-items: center; gap: 2px;
-  }
-  .cursor {
-    display: inline-block; width: 2px; height: 1em;
-    background: var(--green); animation: blink 0.9s step-end infinite;
-  }
+h1{font-family:var(--font-disp);font-size:clamp(42px,8vw,72px);font-weight:700;line-height:1.1;color:var(--text-main);margin-bottom:16px;letter-spacing:-1px;}
+h1 span{color:var(--g-blue);}
+.hero-desc{font-size:18px;line-height:1.6;color:var(--text-muted);font-weight:300;margin-bottom:40px;}
 
-  .hero-desc {
-    font-size: 1.02rem; line-height: 1.8;
-    color: var(--text-muted); max-width: 500px; margin-bottom: 40px;
-  }
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{
+  font-family:var(--font-disp);font-size:15px;font-weight:500;
+  padding:12px 24px;border-radius:24px;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.btn-p{background:var(--g-blue);color:#fff;border:1px solid var(--g-blue);box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);}
+.btn-p:hover{background:#1765cc;box-shadow: 0 4px 8px 3px rgba(60,64,67,0.15); transform: translateY(-2px);}
+.btn-s{background:transparent;color:var(--g-blue);border:1px solid var(--border);}
+.btn-s:hover{background:var(--g-blue-light);border-color:var(--g-blue-light); transform: translateY(-2px);}
 
-  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--green); color: #04100a;
-    font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700;
-    padding: 12px 26px; border-radius: 9999px; border: none;
-    text-decoration: none; letter-spacing: 0.05em;
-    transition: opacity 0.2s, transform 0.2s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent; color: var(--text);
-    font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700;
-    padding: 11px 26px; border-radius: 9999px;
-    border: 1px solid rgba(200,214,229,0.2);
-    text-decoration: none; letter-spacing: 0.05em;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+/* ── SECTION ── */
+.section{padding:80px 0;}
+.section:nth-child(odd){background:var(--bg-alt);}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+.sec-head{margin-bottom:48px;text-align:center;}
+.sec-title{font-family:var(--font-disp);font-size:32px;font-weight:700;color:var(--text-main);margin-bottom:8px;}
+.sec-line{width:60px;height:4px;background:var(--g-blue);border-radius:2px;margin:0 auto; transition: width 0.3s ease;}
+.section:hover .sec-line { width: 100px; }
 
-  /* stats strip */
-  .stats {
-    display: flex; gap: 0; margin-top: 56px;
-    border: 1px solid var(--green-border); border-radius: 14px;
-    overflow: hidden; width: fit-content;
-  }
-  .stat {
-    padding: 18px 32px; border-right: 1px solid var(--green-border);
-    text-align: center;
-  }
-  .stat:last-child { border-right: none; }
-  .stat-n {
-    font-family: 'Space Mono', monospace; font-size: 1.5rem; font-weight: 700;
-    color: var(--green);
-  }
-  .stat-l { font-size: 0.68rem; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.08em; text-transform: uppercase; }
+/* ── CARDS ── */
+.g-card {
+  background:var(--bg-main);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  transition:all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.g-card:hover {
+  box-shadow: 0 4px 6px rgba(60,64,67,0.15), 0 1px 3px rgba(60,64,67,0.3);
+  transform: translateY(-4px);
+  border-color: transparent;
+}
 
-  /* ── DIVIDER ── */
-  .divider { height: 1px; background: rgba(255,255,255,0.05); }
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.about-text p{font-size:16px;line-height:1.7;color:var(--text-muted);margin-bottom:16px;}
+.about-text strong{color:var(--text-main);font-weight:500;}
 
-  /* ── SECTION HEADER ── */
-  .sec-num {
-    font-family: 'Space Mono', monospace; font-size: 0.68rem;
-    color: var(--green); letter-spacing: 0.18em; text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  h2.sec-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800;
-    color: #fff; letter-spacing: -0.02em; margin-bottom: 48px;
-  }
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.acard-ico{font-size:28px;margin-bottom:12px;color:var(--g-blue);display:block; transition: transform 0.3s ease;}
+.g-card:hover .acard-ico { transform: scale(1.1); }
+.acard-t{font-family:var(--font-disp);font-size:16px;font-weight:500;color:var(--text-main);margin-bottom:4px;}
+.acard-s{font-size:13px;color:var(--text-muted);}
 
-  /* ── ABOUT ── */
-  #about { padding: 100px 0; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .about-text p { color: var(--text-muted); line-height: 1.85; font-size: 0.97rem; margin-bottom: 16px; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;
-    background: var(--green-dim); border: 1px solid var(--green-border);
-    border-radius: 9px; padding: 9px 16px;
-    font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--green);
-  }
+/* ── EXPERIENCE (Interactive) ── */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{
+  display:grid;grid-template-columns:120px 24px 1fr;
+  gap:0 24px;padding-bottom:16px;position:relative;
+  cursor: default;
+}
+.tl-left{padding-top:16px;text-align:right;}
+.tl-date{font-family:var(--font-disp);font-size:13px;font-weight:500;color:var(--text-muted);line-height:1.4; transition: color 0.3s ease;}
+.tl-mid{display:flex;flex-direction:column;align-items:center; padding-top: 18px;}
 
-  .about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .acard {
-    background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 14px; padding: 20px 18px;
-    transition: border-color 0.25s, transform 0.25s;
-  }
-  .acard:hover { border-color: var(--green-border); transform: translateY(-3px); }
-  .acard i { font-size: 1.4rem; color: var(--green); margin-bottom: 10px; display: block; }
-  .acard h4 { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 3px; }
-  .acard p { font-size: 0.73rem; color: var(--text-muted); }
+/* Pulse Animation for Current Job */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(26, 115, 232, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
+}
 
-  /* ── SKILLS ── */
-  #skills { padding: 100px 0; background: rgba(255,255,255,0.015); }
-  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-  .skill {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--surface); border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px; padding: 11px 18px;
-    font-family: 'Space Mono', monospace; font-size: 0.78rem;
-    color: rgba(200,214,229,0.7);
-    transition: border-color 0.2s, color 0.2s, transform 0.2s;
-    cursor: default;
-  }
-  .skill i { color: var(--green); font-size: 0.95rem; }
-  .skill:hover { border-color: var(--green-border); color: #fff; transform: translateY(-2px); }
+.tl-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;z-index:2; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+.tl-item:nth-child(1) .tl-dot {background: var(--g-blue); animation: pulse 2s infinite;}
+.tl-item:nth-child(2) .tl-dot {background: var(--g-red);}
+.tl-item:nth-child(3) .tl-dot {background: var(--g-yellow);}
+.tl-item:nth-child(4) .tl-dot {background: var(--g-green);}
 
-  /* ── EXPERIENCE ── */
-  #experience { padding: 100px 0; }
-  .timeline { display: flex; flex-direction: column; gap: 36px; }
-  .tl-item {
-    display: grid; grid-template-columns: 160px 1fr;
-    gap: 32px; align-items: start;
-    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .tl-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .tl-meta { padding-top: 2px; }
-  .tl-date {
-    font-family: 'Space Mono', monospace; font-size: 0.68rem;
-    color: var(--green); letter-spacing: 0.04em; margin-bottom: 6px;
-  }
-  .tl-org { font-size: 0.72rem; color: var(--text-muted); }
-  .tl-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-  .tl-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+.tl-line{flex:1;width:2px;background:var(--border);margin-top:-4px;}
+.tl-item:last-child .tl-line{display:none;}
 
-  /* ── PROJECTS ── */
-  #projects { padding: 100px 0; background: rgba(255,255,255,0.015); }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-  .pcard {
-    background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px; padding: 26px 24px;
-    transition: border-color 0.25s, transform 0.25s;
-  }
-  .pcard:hover { border-color: var(--green-border); transform: translateY(-4px); }
-  .pcard-icon {
-    width: 42px; height: 42px; border-radius: 11px;
-    background: var(--green-dim); border: 1px solid var(--green-border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; color: var(--green); margin-bottom: 18px;
-    transition: background 0.25s, color 0.25s;
-  }
-  .pcard:hover .pcard-icon { background: var(--green); color: #04100a; }
-  .pcard h3 { font-size: 0.97rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-  .pcard p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    font-family: 'Space Mono', monospace; font-size: 0.65rem;
-    color: var(--green); background: var(--green-dim);
-    border: 1px solid rgba(0,255,136,0.15); border-radius: 6px; padding: 3px 9px;
-  }
+/* The Interactive Content Box */
+.tl-content {
+  background: transparent;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.tl-title{font-family:var(--font-disp);font-size:20px;font-weight:500;color:var(--text-main);margin-bottom:4px;line-height:1.2; transition: color 0.3s ease;}
+.tl-org{font-size:14px;color:var(--g-blue);margin-bottom:12px;font-weight:500;}
+.tl-desc{font-size:15px;color:var(--text-muted);line-height:1.6;}
 
-  /* ── ACHIEVEMENTS ── */
-  #achievements { padding: 100px 0; }
-  .ach-list { display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
-  .ach {
-    display: flex; align-items: center; gap: 16px;
-    background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px; padding: 16px 20px;
-    transition: border-color 0.22s, transform 0.22s;
-  }
-  .ach:hover { border-color: var(--green-border); transform: translateX(5px); }
-  .ach-ico { font-size: 1.4rem; flex-shrink: 0; }
-  .ach h4 { font-size: 0.9rem; font-weight: 700; color: #fff; }
-  .ach span { font-size: 0.73rem; color: var(--text-muted); display: block; margin-top: 2px; }
+/* Hover Effects for Timeline Item */
+.tl-item:hover .tl-content {
+  background: var(--bg-main);
+  border-color: var(--border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transform: translateX(8px);
+}
+.tl-item:hover .tl-dot { transform: scale(1.4); }
+.tl-item:nth-child(1):hover .tl-dot { animation: none; box-shadow: 0 0 0 6px rgba(26, 115, 232, 0.2); }
+.tl-item:nth-child(2):hover .tl-dot { box-shadow: 0 0 0 6px rgba(234, 67, 53, 0.2); }
+.tl-item:nth-child(3):hover .tl-dot { box-shadow: 0 0 0 6px rgba(251, 188, 4, 0.2); }
+.tl-item:nth-child(1):hover .tl-title { color: var(--g-blue); }
+.tl-item:nth-child(2):hover .tl-title { color: var(--g-red); }
+.tl-item:nth-child(3):hover .tl-title { color: var(--g-yellow); }
 
-  /* ── FOOTER ── */
-  footer {
-    position: relative; z-index: 1;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 60px 5% 36px;
-  }
-  .footer-cta { text-align: center; margin-bottom: 52px; }
-  .footer-cta h2 {
-    font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
-    color: #fff; margin-bottom: 12px;
-  }
-  .footer-cta p { color: var(--text-muted); margin-bottom: 28px; font-size: 0.92rem; }
-  .footer-bar {
-    max-width: 960px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 14px;
-    border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;
-  }
-  .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--text-muted); }
-  .socials { display: flex; gap: 14px; }
-  .socials a {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text-muted); font-size: 0.85rem; text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .socials a:hover { border-color: var(--green); color: var(--green); }
+/* ── PROJECTS ── */
+.proj-grid{display:grid;grid-template-columns:1fr;gap:24px;}
+@media(min-width:768px){ .proj-grid{grid-template-columns:1fr 1fr;} }
 
-  /* ── REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .reveal.on { opacity: 1; transform: translateY(0); }
+.pcard-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.pcard-ico{font-size:24px;color:var(--text-muted); transition: color 0.3s ease;}
+.g-card:hover .pcard-ico { color: var(--g-blue); }
+.pcard-title{font-family:var(--font-disp);font-size:18px;font-weight:500;color:var(--text-main);line-height:1.3;}
+.pcard-desc{font-size:15px;color:var(--text-muted);line-height:1.6;margin-bottom:20px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{
+  font-family:var(--font-body);font-size:12px;font-weight:500;color:var(--g-blue);
+  background:var(--g-blue-light);border-radius:12px;padding:4px 12px;
+  transition: all 0.3s ease;
+}
+.g-card:hover .tag { background: var(--g-blue); color: white; }
 
-  @media (max-width: 700px) {
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .tl-item { grid-template-columns: 1fr; gap: 6px; }
-    .stats { width: 100%; flex-wrap: wrap; }
-    nav { gap: 16px; padding: 10px 18px; }
-    .nav-links { gap: 14px; }
-  }
+/* ── CONTACT ── */
+.contact-links{display:flex;flex-direction:column;gap:12px;max-width:500px;margin:0 auto;}
+.clink{
+  display:flex;align-items:center;gap:16px;padding:16px 20px;
+  text-decoration:none; cursor: pointer;
+}
+.clink-ico{font-size:24px;color:var(--text-muted);display:flex;align-items:center;justify-content:center; transition: transform 0.3s ease;}
+.clink-val{font-size:15px;font-weight:500;color:var(--text-main); transition: color 0.3s ease;}
+.clink:hover .clink-ico{color:var(--g-blue); transform: scale(1.1) rotate(-10deg);}
+.clink:hover .clink-val{color:var(--g-blue);}
+
+/* ── FOOTER ── */
+footer{background:var(--bg-main);padding:32px 24px;text-align:center;border-top:1px solid var(--border);}
+.f-logo{font-family:var(--font-disp);font-size:20px;font-weight:700;color:var(--text-muted);margin-bottom:8px;}
+.f-copy{font-size:13px;color:var(--text-muted);}
+
+/* ── REVEAL ANIMATION ── */
+.r{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.r.on{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr;}
+  h1{font-size:42px;}
+}
+@media(max-width:480px){
+  .tl-item{grid-template-columns:80px 16px 1fr;gap:0 12px;}
+  .tl-date{font-size:11px;}
+  .tl-left{text-align:left;}
+  .tl-content { padding: 12px; }
+}
 </style>
 </head>
 <body>
 
-<div class="orb"></div>
-
-<!-- NAV -->
-<nav>
-  <span class="nav-logo">reskiif_</span>
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="r1">R</span><span class="e">e</span><span class="s">s</span><span class="k">k</span><span class="i">i</span>
+  </a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#exp" class="nav-link">Experience</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div style="position:relative;z-index:1;">
 <section id="hero">
-  <div class="hero-inner reveal">
-    <h1 class="name">Reski Farras<br><span class="accent">Adiefa </span></h1>
-    <div class="typing-wrap">
-      <span id="typing"></span><span class="cursor"></span>
+  <div class="hero-inner r">
+    <div class="hero-tag">
+      <span class="material-symbols-outlined">school</span>
+      Telkom University · Teknik Telekomunikasi
     </div>
-    <p class="hero-desc">
-      Mahasiswa Teknik Telekomunikasi Telkom University yang passionate di bidang infrastruktur jaringan, SDN, dan Cloud-Native
-    </p>
+    <h1>Reski Farras <span>Adiefa</span></h1>
+    <p class="hero-desc">Mahasiswa dengan minat mendalam pada infrastruktur jaringan modern, Software-Defined Networking (SDN), dan Cloud-Native.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn-primary"><i class="fas fa-terminal"></i> View Projects</a>
-      <a href="https://www.linkedin.com/in/reski-farras-adiefa-113409315/" target="_blank" class="btn-ghost"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="#projects" class="btn btn-p">
+        <span class="material-symbols-outlined">work</span> Projects
+      </a>
+      <a href="https://linkedin.com/in/reski-farras-adiefa-113409315/" target="_blank" class="btn btn-s">
+        <span class="material-symbols-outlined">open_in_new</span> LinkedIn
+      </a>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
+<section class="section" id="about">
   <div class="wrap">
+    <div class="sec-head r"><h2 class="sec-title">About Me</h2><div class="sec-line"></div></div>
     <div class="about-grid">
-      <div class="about-text reveal">
-        <div class="sec-num">01 — About</div>
-        <h2 class="sec-title">Building Smarter<br><span style="color:var(--green)">Networks</span></h2>
-        <p>Mahasiswa S1 Teknik Telekomunikasi di <strong style="color:#fff;">Telkom University</strong> dengan minat mendalam pada infrastruktur jaringan modern, SDN, dan otomatisasi sistem.</p>
-        <p>Senang menjembatani pengetahuan teoritis dengan implementasi nyata — dari membangun topologi SDN kompleks hingga deploy aplikasi menggunakan Docker.</p>
+      <div class="about-text r">
+        <p>Saya adalah mahasiswa <strong>S1 Teknik Telekomunikasi</strong> di Telkom University. Saya fokus pada pengembangan infrastruktur jaringan masa depan dan optimasi arsitektur sistem.</p>
       </div>
-      <div class="about-cards reveal" style="transition-delay:0.12s;">
-        <div class="acard">
-          <i class="fas fa-network-wired"></i>
-          <h4>Networking</h4>
-          <p>SDN, Routing & Load Balancing</p>
+      <div class="about-cards r" style="transition-delay:.1s">
+        <div class="g-card">
+          <span class="material-symbols-outlined acard-ico" style="color:var(--g-red)">router</span>
+          <div class="acard-t">Networking</div>
+          <div class="acard-s">SDN & Routing</div>
         </div>
-        <div class="acard">
-          <i class="fab fa-docker"></i>
-          <h4>DevOps</h4>
-          <p>Docker, Portainer & Linux</p>
+        <div class="g-card">
+          <span class="material-symbols-outlined acard-ico" style="color:var(--g-blue)">dns</span>
+          <div class="acard-t">DevOps</div>
+          <div class="acard-s">Docker & Linux</div>
         </div>
-        <div class="acard">
-          <i class="fab fa-python"></i>
-          <h4>Backend</h4>
-          <p>Python & Django</p>
+        <div class="g-card">
+          <span class="material-symbols-outlined acard-ico" style="color:var(--g-green)">terminal</span>
+          <div class="acard-t">Backend</div>
+          <div class="acard-s">Python & Django</div>
         </div>
-        <div class="acard">
-          <i class="fas fa-brain"></i>
-          <h4>AI / ML</h4>
-          <p>Machine Learning Basics</p>
+        <div class="g-card">
+          <span class="material-symbols-outlined acard-ico" style="color:var(--g-yellow)">memory</span>
+          <div class="acard-t">AI / ML</div>
+          <div class="acard-s">ML Fundamentals</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<section id="skills">
+<section class="section" id="exp">
   <div class="wrap">
-    <div class="reveal">
-      <div class="sec-num">02 — Stack</div>
-      <h2 class="sec-title">Tech & Tools</h2>
-    </div>
-    <div class="skills-grid reveal" style="transition-delay:0.1s;">
-      <div class="skill"><i class="fab fa-docker"></i> Docker / Portainer</div>
-      <div class="skill"><i class="fas fa-server"></i> Ryu Controller</div>
-      <div class="skill"><i class="fab fa-python"></i> Django Framework</div>
-      <div class="skill"><i class="fab fa-linux"></i> Linux / Ubuntu</div>
-      <div class="skill"><i class="fas fa-project-diagram"></i> Mininet</div>
-      <div class="skill"><i class="fab fa-github"></i> Git / GitHub</div>
-      <div class="skill"><i class="fas fa-network-wired"></i> Cisco Packet Tracer</div>
-      <div class="skill"><i class="fab fa-python"></i> Python</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="sec-num">03 — Experience</div>
-      <h2 class="sec-title">Journey</h2>
-    </div>
+    <div class="sec-head r"><h2 class="sec-title">Experience</h2><div class="sec-line"></div></div>
     <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-meta">
-          <div class="tl-date">May 2026 – Present</div>
-          <div class="tl-org">Adaptive Network Laboratory</div>
-        </div>
-        <div>
+      
+      <div class="tl-item r">
+        <div class="tl-left"><div class="tl-date">May 2026<br>Present</div></div>
+        <div class="tl-mid"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
           <div class="tl-title">Internship Research Assistant</div>
-          <div class="tl-desc">Terpilih sebagai asisten riset magang untuk mendukung eksplorasi teknologi jaringan. Bertanggung jawab dalam setup lingkungan simulasi dan analisis performa jaringan serta bikin web portofolio.</div>
+          <div class="tl-org">Adaptive Network Laboratory · Telkom University</div>
+          <div class="tl-desc">Melakukan setup lingkungan simulasi jaringan dengan topologi dan ketentuan yang diminta serta analisis performa. Kemudian membuat web portofolio untuk personal branding.</div>
         </div>
       </div>
-      <div class="tl-item reveal" style="transition-delay:0.08s;">
-        <div class="tl-meta">
-          <div class="tl-date">Feb 2026 – Present</div>
-          <div class="tl-org">Telkom University</div>
-        </div>
-        <div>
+      
+      <div class="tl-item r" style="transition-delay:.1s">
+        <div class="tl-left"><div class="tl-date">Feb 2026<br>Present</div></div>
+        <div class="tl-mid"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
           <div class="tl-title">IEEE Student Branch</div>
-          <div class="tl-desc">Member of Creative and Information. Mengelola konsistensi brand pada platform digital serta berkolaborasi lintas tim untuk materi promosi.</div>
+          <div class="tl-org">Creative & Information · Telkom University</div>
+          <div class="tl-desc">Bertanggung jawab mengelola konsistensi brand pada platform digital serta berkolaborasi lintas tim untuk kebutuhan materi promosi organisasi.</div>
         </div>
       </div>
-      <div class="tl-item reveal" style="transition-delay:0.16s;">
-        <div class="tl-meta">
-          <div class="tl-date">Dec 2024 – Jun 2025</div>
-          <div class="tl-org">Telkom University</div>
-        </div>
-        <div>
+      
+      <div class="tl-item r" style="transition-delay:.2s">
+        <div class="tl-left"><div class="tl-date">Dec 2024<br>Jun 2025</div></div>
+        <div class="tl-mid"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
           <div class="tl-title">GDGoC — ML Study Group</div>
-          <div class="tl-desc">Member of Machine Learning Study Group. Mendiskusikan dan mempelajari fundamental AI dan implementasi machine learning secara kolaboratif.</div>
+          <div class="tl-org">Google Developer Groups on Campus</div>
+          <div class="tl-desc">Mempelajari fundamental AI dan melakukan implementasi dasar machine learning secara kolaboratif bersama anggota kelompok studi.</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PROJECTS -->
-<section id="projects">
+<section class="section" id="projects">
   <div class="wrap">
-    <div class="reveal">
-      <div class="sec-num">04 — Work</div>
-      <h2 class="sec-title">Projects</h2>
-    </div>
-    <div class="projects-grid">
-      <div class="pcard reveal">
-        <div class="pcard-icon"><i class="fas fa-project-diagram"></i></div>
-        <h3>SDN Diamond Topology & Load Balancing</h3>
-        <p>Jaringan SDN dengan topologi Diamond menggunakan Mininet. Implementasi aturan Load Balancing kustom via Ryu Controller untuk optimalisasi trafik data antar node.</p>
+    <div class="sec-head r"><h2 class="sec-title">Featured Projects</h2><div class="sec-line"></div></div>
+    <div class="proj-grid r">
+      
+      <div class="g-card">
+        <div class="pcard-top">
+          <span class="material-symbols-outlined pcard-ico">hub</span>
+          <div class="pcard-title">SDN Topology</div>
+        </div>
+        <div class="pcard-desc">Merancang jaringan Software-Defined Networking (SDN) dengan topologi menggunakan Mininet. Mengimplementasikan Load Balancing dan aturan kustom via Ryu Controller untuk optimalisasi trafik.</div>
         <div class="tags">
-          <span class="tag">#Mininet</span><span class="tag">#Ryu</span><span class="tag">#Python</span><span class="tag">#SDN</span>
+          <span class="tag">Mininet</span><span class="tag">Ryu</span><span class="tag">Python</span>
         </div>
       </div>
-      <div class="pcard reveal" style="transition-delay:0.1s;">
-        <div class="pcard-icon"><i class="fab fa-docker"></i></div>
-        <h3>Final Project Network Development</h3>
-        <p>Integrasi arsitektur jaringan terpusat dengan seluruh environment di-containerize menggunakan Docker, terhubung ke dashboard monitoring berbasis Django.</p>
-        <div class="tags">
-          <span class="tag">#Docker</span><span class="tag">#Django</span><span class="tag">#SDN</span>
+      
+      <div class="g-card">
+        <div class="pcard-top">
+          <span class="material-symbols-outlined pcard-ico">dashboard</span>
+          <div class="pcard-title">Network Dev Final Project</div>
         </div>
+        <div class="pcard-desc">Mengembangkan arsitektur jaringan terpusat dimana seluruh layanan di-containerize menggunakan Docker. Data jaringan tersebut dihubungkan dan dimonitor melalui dashboard berbasis Django.</div>
+        <div class="tags">
+          <span class="tag">Docker</span><span class="tag">Django</span><span class="tag">SDN</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="sec-head r"><h2 class="sec-title">Get In Touch</h2><div class="sec-line"></div></div>
+    <div class="contact-links r">
+      <a class="g-card clink" href="https://mail.google.com/mail/?view=cm&fs=1&to=adiefareski02@gmail.com" target="_blank">
+        <span class="material-symbols-outlined clink-ico">mail</span>
+        <span class="clink-val">adiefareski02@gmail.com</span>
+      </a>
+      <a class="g-card clink" href="https://linkedin.com/in/reski-farras-adiefa-113409315/" target="_blank">
+        <span class="material-symbols-outlined clink-ico">public</span>
+        <span class="clink-val">linkedin.com/in/reski-farras-adiefa</span>
+      </a>
+      <div class="g-card clink">
+        <span class="material-symbols-outlined clink-ico">location_on</span>
+        <span class="clink-val">Bandung, Jawa Barat, Indonesia</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-
-</div><!-- /z-index wrapper -->
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-cta reveal">
-    <h2>Let's <span style="color:var(--green)">Connect</span></h2>
-    <p>Terbuka untuk kolaborasi, riset, dan diskusi seputar networking & teknologi</p>
-    <a href="mailto:adiefareski02@gmail.com" class="btn-primary">
-      <i class="fas fa-envelope"></i> adiefareski02@gmail.com
-    </a>
-  </div>
-  <div class="footer-bar">
-    <div class="footer-copy">> © 2026 Reski Farras Adiefa</div>
-    <div class="socials">
-      <a href="mailto:adiefareski02@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://www.linkedin.com/in/reski-farras-adiefa-113409315/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
+  <div class="f-logo">Reski Farras</div>
+  <div class="f-copy">© 2026 Reski Farras Adiefa. All rights reserved.</div>
 </footer>
 
 <script>
-  // Typing
-  const words = ["Network Engineer", "SDN Enthusiast", "Django Developer", "Cloud-Native Networking"];
-  let wi = 0, ci = 0, del = false;
-  (function tick() {
-    const w = words[wi % words.length];
-    document.getElementById('typing').textContent = del ? w.slice(0, --ci) : w.slice(0, ++ci);
-    let t = del ? 40 : 85;
-    if (!del && ci === w.length) { t = 2000; del = true; }
-    else if (del && ci === 0) { del = false; wi++; t = 380; }
-    setTimeout(tick, t);
-  })();
+// Intersection Observer for Scroll Reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('on');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.r').forEach(el => io.observe(el));
 
-  // Reveal on scroll
-  const els = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }), { threshold: 0.1 });
-  els.forEach(el => io.observe(el));
+// Scroll Spy for Navbar
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  
+  // Add shadow to navbar when scrolled
+  if (window.scrollY > 10) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+
+  // Determine which section is currently in view
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    if (pageYOffset >= sectionTop - 150) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  // Highlight the correct nav link
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href").substring(1) === current) {
+      link.classList.add("active");
+    }
+  });
+});
 </script>
 </body>
 </html>
